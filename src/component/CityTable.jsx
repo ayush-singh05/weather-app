@@ -27,7 +27,7 @@ function CityTable() {
       const data = await response.json();
       setCityData(prevCities => [...prevCities, ...data.results]);
       setIsLoading(false)
-      console.log(data);
+      
       return data;
     } catch (error) {
       console.log(error);
