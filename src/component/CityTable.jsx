@@ -63,8 +63,8 @@ function CityTable() {
         <label className="cursor-pointer" htmlFor="sorting">Sort By City</label>
         <input className="cursor-pointer hover:border-2 bg-black" type="checkbox" defaultChecked={isSorted} id="sorting" onChange={() => setISSorted(!isSorted)} />
       </div>
-      {cityData && <div className="flex flex-col justify-center items-center">
-        <table className=" border-2  mt-8 w-full ">
+      {cityData && <div className="flex flex-col justify-center items-center w-screen">
+        <table className=" border-2  mt-8 w-3/4  text-base max-sm:text-sm ">
           <thead className="border-2 sticky top-0 z-10 bg-slate-600 text-white">
             <tr className="border-2 text-left ">
               <th className="border-2 px-4 py-1 text-lg ">City Name</th>
@@ -83,12 +83,12 @@ function CityTable() {
                   <td className="border-2 px-4 py-1 max-w-32 overflow-hidden">{item.timezone}</td>
                 </tr>
               )) : cityData.map((item, idx) => (
-                <tr key={idx} >
+                <tr key={idx} className="text-wrap" >
                   <td className="border-2 px-4 py-1 hover:underline hover:text-black"><Link to={`/weather?lat=${item.coordinates.lat}&lon=${item.coordinates.lon}`} target="_blank"  >
                     {item.name}
                   </Link></td>
                   <td className="border-2 px-4 py-1">{item.cou_name_en}</td>
-                  <td className="border-2 px-4 py-1 max-w-32 overflow-hidden">{item.timezone}</td>
+                  <td className="border-2 px-4 py-1 max-w-32 overflow-hidden text-wrap">{item.timezone}</td>
                 </tr>
               ))
             }
