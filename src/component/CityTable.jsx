@@ -39,8 +39,9 @@ function CityTable() {
   const handleScroll = () => {
     // Check if user has scrolled to the bottom of the page
     if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight) {
+     
       setOffset(prevOffset => prevOffset + limit); // Increment offset
-
+      
     }
   };
 
@@ -50,9 +51,9 @@ function CityTable() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  if (isLoading) return <Loading />
+
   return (
-    <div className="flex flex-col justify-center items-center ">
+    <div className="flex flex-col justify-center items-center px-10">
       {/* Heading */}
 
       <h3 className="text-center text-3xl font-semibold">List of cities</h3>
