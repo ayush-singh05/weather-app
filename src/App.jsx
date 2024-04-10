@@ -7,13 +7,16 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div className='px-4'>
+    <div >
+      
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<CityTable />} />
-          <Route path='weather' element={<Weather />} />
+          <Route path='/weather' element={<Weather />} />
         </Routes>
       </BrowserRouter>
+    
+  
     </div>
 
   )

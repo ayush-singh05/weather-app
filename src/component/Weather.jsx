@@ -1,11 +1,13 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 
 import WeatherConditions from './WeatherConditions';
+import Loading from './Loading';
 
 
 // { city, country, temp,humidity,windSpeed,sunrise,sunset,desc}
 function Weather() {
     const [weatherData, setWeatherData] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
 
     const weatherCondition = weatherData && weatherData.weather
         ? weatherData.weather.map((item, idx) => (idx === 0 ? item.main : ''))
@@ -16,10 +18,8 @@ function Weather() {
         const urlParam = new URLSearchParams(mykeys);
         const lon = urlParam.get('lon');
         const lat = urlParam.get('lat');
-
+        setIsLoading(true);
         const fetchData = async () => {
-           
-
             try {
                 const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=9bc77de74616ea3d6779fa0151cea80d&units=metric`);
                 if (!response.ok) {
@@ -28,10 +28,11 @@ function Weather() {
                 const data = await response.json();
                
                 setWeatherData({ name: data.name, main: data.main, weather: data.weather, visibility: data.visibility, wind: data.wind, sys: data.sys });
-               
+               setIsLoading(false)
             } catch (error) {
                 console.log(error);
             }
+            
         };
 
         fetchData();
@@ -45,7 +46,7 @@ function Weather() {
         hours = hours ? hours : 12;
         return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')} `
     }
-
+    if(isLoading) return <Loading/>
     return (
         <div className='bg-slate-300 h-screen pt-10 px-4'>
             <div className='max-w-md  p-4 bg-white rounded-lg mx-auto shadow-xl'>
