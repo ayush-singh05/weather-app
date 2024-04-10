@@ -6,23 +6,19 @@ import WeatherConditions from './WeatherConditions';
 // { city, country, temp,humidity,windSpeed,sunrise,sunset,desc}
 function Weather() {
     const [weatherData, setWeatherData] = useState({});
-    const mykeys = window.location.search;
-        const urlParam = new URLSearchParams(mykeys);
-        const lon = urlParam.get('lon');
-        const lat = urlParam.get('lat');
+
     const weatherCondition = weatherData && weatherData.weather
         ? weatherData.weather.map((item, idx) => (idx === 0 ? item.main : ''))
         : [];
 
     useEffect(() => {
-        // const mykeys = window.location.search;
-        // const urlParam = new URLSearchParams(mykeys);
-        // const lon = urlParam.get('lon');
-        // const lat = urlParam.get('lat');
+        const mykeys = window.location.search;
+        const urlParam = new URLSearchParams(mykeys);
+        const lon = urlParam.get('lon');
+        const lat = urlParam.get('lat');
 
         const fetchData = async () => {
-            // setLoading(true);
-            // setError(null);
+           
 
             try {
                 const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=9bc77de74616ea3d6779fa0151cea80d&units=metric`);
@@ -30,9 +26,9 @@ function Weather() {
                     throw new Error("Network Error");
                 }
                 const data = await response.json();
-                console.log(data);
+               
                 setWeatherData({ name: data.name, main: data.main, weather: data.weather, visibility: data.visibility, wind: data.wind, sys: data.sys });
-                console.log(weatherData);
+               
             } catch (error) {
                 console.log(error);
             }
