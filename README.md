@@ -7,6 +7,7 @@ This is a web application built with Vite, React, and React Router that displays
 - Fetches city data and weather forecasts from external APIs
 - Displays weather forecasts for multiple cities
 - Implements infinite scroll to dynamically load more weather forecasts as the user scrolls
+- Implements search feature to easily navigate
 - Uses React Router for navigation between pages
 
 ## Prerequisites
