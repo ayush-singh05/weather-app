@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { Link } from 'react-router-dom'
 import Loading from "./Loading";
+import SearchBar from "./SearchBar";
 
 function CityTable() {
 
@@ -63,6 +64,11 @@ function CityTable() {
         <label className="cursor-pointer" htmlFor="sorting">Sort By City</label>
         <input className="cursor-pointer hover:border-2 bg-black" type="checkbox" defaultChecked={isSorted} id="sorting" onChange={() => setISSorted(!isSorted)} />
       </div>
+      
+      {/** Searchbar  */}
+      <SearchBar result={cityData}/>
+
+
       {cityData && <div className="flex flex-col justify-center items-center w-screen">
         <table className=" border-2  mt-8 w-3/4  text-base max-sm:text-sm ">
           <thead className="border-2 sticky top-0 z-10 bg-slate-600 text-white">
